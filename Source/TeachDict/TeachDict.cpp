@@ -61,7 +61,7 @@ void TeachDict(vector<array<string, 2>> dict, int blockSize)
 				else
 				{
 					isBlockCorrect = false;
-					cout << "Incorrect!";
+					cout << "Incorrect! " << correctAnswer << " ";
 				}
 
 				cin.get();

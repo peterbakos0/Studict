@@ -1,7 +1,7 @@
 STUDICT
 Study your dictionary and definitions efficiently!
 
-Usage: studict <path_to_dict_file>
+Usage: studict <path_to_dict_file> <block_size>
 
 Dict file structure:
 	1. <key_1>: <value_1>

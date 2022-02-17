@@ -1,0 +1,30 @@
+CXX=g++
+MKDIR=mkdir -p
+RM=rm -rf
+
+CXXFLAGS=-Wall
+
+SOURCE_DIR=Source
+BUILD_DIR=Build
+OBJECTS_DIR=Objects
+BINARY_DIR=Binary
+TARGET_EXEC=studict
+
+SOURCE_EXT=.cpp
+OBJECT_EXT=.o
+
+SOURCES=$(shell find $(SOURCE_DIR) -name *$(SOURCE_EXT))
+OBJECTS=$(patsubst $(SOURCE_DIR)/%$(SOURCE_EXT), $(BUILD_DIR)/$(OBJECTS_DIR)/%$(OBJECT_EXT), $(SOURCES))
+
+all: $(BUILD_DIR)/$(BINARY_DIR)/$(TARGET_EXEC)
+
+clean:
+	$(RM) $(BUILD_DIR)
+
+$(BUILD_DIR)/$(BINARY_DIR)/$(TARGET_EXEC): $(OBJECTS)
+	$(MKDIR) $(BUILD_DIR)/$(BINARY_DIR)
+	$(CXX) $(OBJECTS) $(CXXFLAGS) -o $(BUILD_DIR)/$(BINARY_DIR)/$(TARGET_EXEC)
+
+$(BUILD_DIR)/$(OBJECTS_DIR)/%$(OBJECT_EXT): $(SOURCE_DIR)/%$(SOURCE_EXT)
+	$(MKDIR) $(dir $@)
+	$(CXX) $< $(CXXFLAGS) -o $@ -c
